@@ -130,15 +130,15 @@ public class EmployeeTest {
 
     @Test
     public void allEmployeesHaveProperToString() {
-        EmployeeRoster roster = new EmployeeRoster();
+        Occupants occupants = new Occupants();
         Doctor doctor = new Doctor("John", "Brain");
         Nurse nurse = new Nurse("Jane");
         Receptionist receptionist = new Receptionist("Jeff", false);
         Janitor janitor = new Janitor("Doug", false);
 
-        roster.addToRoster(doctor, nurse, receptionist, janitor);
+        occupants.addToRoster(doctor, nurse, receptionist, janitor);
 
-        assertThatCode(roster::printAllEmployees).doesNotThrowAnyException();
+        assertThatCode(occupants::printAllEmployees).doesNotThrowAnyException();
     }
 
     @Test

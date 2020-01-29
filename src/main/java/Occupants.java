@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.function.Predicate;
 
-public class EmployeeRoster {
+public class Occupants {
 
     private final List<Employee> allEmployees = new ArrayList<>();
 

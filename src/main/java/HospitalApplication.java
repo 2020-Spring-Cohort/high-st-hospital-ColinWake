@@ -5,7 +5,7 @@ public class HospitalApplication {
 
         Scanner input = new Scanner(System.in);
 
-        EmployeeRoster roster = new EmployeeRoster();
+        Occupants occupants = new Occupants();
 
         System.out.println("Welcome to High St. Hospital!");
 
@@ -22,17 +22,17 @@ public class HospitalApplication {
                     break;
 
                 case "work":
-                    roster.makeChosenEmployeeWork(input);
+                    occupants.makeChosenEmployeeWork(input);
 
                     break;
 
                 case "care":
-                    roster.makeDoctorOrNurseCare(input);
+                    occupants.makeDoctorOrNurseCare(input);
 
                     break;
 
                 case "pay":
-                    roster.payAllEmployees();
+                    occupants.payAllEmployees();
 
                     break;
                 default:
