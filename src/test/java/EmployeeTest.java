@@ -89,7 +89,8 @@ public class EmployeeTest {
         Doctor doctor = new Doctor("Test", "Brain");
 
         assertAll(() -> {
-                    doctor.getPaid();
+                    doctor.pay();
+                    System.out.println(doctor);
                     assertTrue(doctor.isPaid());
                 },
                 () -> assertTrue(doctor.getSalary().equalsIgnoreCase("$90,000.00")));
@@ -100,7 +101,8 @@ public class EmployeeTest {
         Nurse nurse = new Nurse("Test");
 
         assertAll(() -> {
-                    nurse.getPaid();
+                    nurse.pay();
+                    System.out.println(nurse);
                     assertTrue(nurse.isPaid());
                 },
                 () -> assertTrue(nurse.getSalary().equalsIgnoreCase("$50,000.00")));
@@ -111,7 +113,8 @@ public class EmployeeTest {
         Receptionist receptionist = new Receptionist("Test", false);
 
         assertAll(() -> {
-                    receptionist.getPaid();
+                    receptionist.pay();
+                    System.out.println(receptionist);
                     assertTrue(receptionist.isPaid());
                 },
                 () -> assertTrue(receptionist.getSalary().equalsIgnoreCase("$45,000.00")));
@@ -122,7 +125,8 @@ public class EmployeeTest {
         Janitor janitor = new Janitor("Test", false);
 
         assertAll(() -> {
-                    janitor.getPaid();
+                    janitor.pay();
+                    System.out.println(janitor);
                     assertTrue(janitor.isPaid());
                 },
                 () -> assertTrue(janitor.getSalary().equalsIgnoreCase("$40,000.00")));
