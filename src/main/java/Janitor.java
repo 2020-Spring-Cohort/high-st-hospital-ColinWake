@@ -1,0 +1,35 @@
+public class Janitor extends Employee implements Worker {
+
+    private boolean sweeping;
+
+    public Janitor(String name, boolean sweeping) {
+        super(40000, name);
+        jobTitle = "Janitor";
+        this.sweeping = sweeping;
+    }
+
+    public boolean isSweeping() {
+        return sweeping;
+    }
+
+    @Override
+    public String getSalary() {
+        return getCurrencyFormat().format(40000);
+    }
+
+    @Override
+    public void paySalary() {
+
+    }
+
+    @Override
+    public void work() {
+        sweeping ^= true;
+        System.out.println(getName() + " has " + (isSweeping() ? "started" : "stopped") + " working!");
+    }
+
+    @Override
+    public boolean isWorking() {
+        return isSweeping();
+    }
+}
