@@ -30,6 +30,11 @@ public class HospitalApplication {
                     roster.makeDoctorOrNurseCare(input);
 
                     break;
+
+                case "pay":
+                    roster.payAllEmployees();
+
+                    break;
                 default:
                     System.out.println("Unknown command, try again");
             }

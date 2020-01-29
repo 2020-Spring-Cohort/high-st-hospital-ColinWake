@@ -31,6 +31,10 @@ public class EmployeeRoster {
         allEmployees.add(employee);
     }
 
+    public void payAllEmployees() {
+        allEmployees.forEach(Employee::getPaid);
+    }
+
     public void addToRoster(Employee... employees) {
         allEmployees.addAll(Arrays.asList(employees));
     }
