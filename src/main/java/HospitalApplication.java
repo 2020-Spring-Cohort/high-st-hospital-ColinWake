@@ -39,11 +39,6 @@ public class HospitalApplication {
 
                 case "quit":
                     break;
-//                case "work":
-//                    occupants.makeChosenEmployeeWork(input);
-//
-//                    break;
-
                 case "list":
                     occupants.printAllEmployees();
 
