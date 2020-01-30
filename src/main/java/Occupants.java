@@ -9,8 +9,6 @@ public class Occupants {
 
     private final Map<String, Patient> patients = new HashMap<>();
 
-//    private final Multimap<HealthCareProfessional, Patient> patientsUnderCare = MultimapBuilder.hashKeys().arrayListValues().build();
-
     public Map<String, Employee> getAllEmployees() {
         return allEmployees;
     }
@@ -21,23 +19,9 @@ public class Occupants {
 
     private final Predicate<Employee> onlyAbleToHelp = e -> e instanceof HealthCareProfessional;
 
-//    private final Predicate<Employee> ableToStartWork = e -> {
-//        if (e instanceof Worker)
-//            return !((Worker) e).isWorking();
-//        return false;
-//    };
-
-//    public Multimap<HealthCareProfessional, Patient> getPatientsUnderCare() {
-//        return patientsUnderCare;
-//    }
-
     public Predicate<Employee> getOnlyAbleToHelp() {
         return onlyAbleToHelp;
     }
-
-//    public Predicate<Employee> getAbleToStartWork() {
-//        return ableToStartWork;
-//    }
 
     public void addToOccupants(Employee employee) {
         getAllEmployees().put(employee.getName().toUpperCase(), employee);
@@ -74,9 +58,10 @@ public class Occupants {
     }
 
     public void hireNewEmployee(Scanner input) {
-        System.out.println("Which job are you hiring for? (Doctor, Janitor, Nurse, Receptionist)");
+        System.out.println("Which job are you hiring for? (Doctor, Janitor, Nurse, Receptionist, Dispatcher)");
 
         String chosenJob = input.nextLine();
+
 
         switch (chosenJob.toLowerCase()) {
 
@@ -115,11 +100,21 @@ public class Occupants {
 
                 break;
             case "receptionist":
-                System.out.println("What is the receptionist's");
+                System.out.println("What is the receptionist's name?");
 
                 name = input.nextLine();
 
                 addToOccupants(new Receptionist(name, false));
+
+                announceNewHire(name, chosenJob);
+
+                break;
+            case "dispatcher":
+                System.out.println("What is the emergency dispatcher's name?");
+
+                name = input.nextLine();
+
+                addToOccupants(new EmergencyDispatcher(name));
 
                 announceNewHire(name, chosenJob);
 
@@ -180,25 +175,6 @@ public class Occupants {
         System.out.println("Patients:");
         getPatients().values().forEach(System.out::println);
     }
-
-//    public void makeChosenEmployeeWork(Scanner input) {
-//        getAllEmployees().stream().filter(getAbleToStartWork()).forEach(System.out::println);
-//
-//        System.out.println("Enter an employee's name to make them start working!");
-//
-//        String chosenEmployee = input.nextLine();
-//
-//        Optional<Employee> employeeOptional = getAllEmployees().stream().filter(e ->
-//                e.getName().equalsIgnoreCase(chosenEmployee) && getAbleToStartWork().test(e)).findFirst();
-//
-//        if (employeeOptional.isPresent()) {
-//            Worker employee = (Worker) employeeOptional.get();
-//
-//            employee.work();
-//        } else {
-//            System.out.println("No employee is named " + chosenEmployee);
-//        }
-//    }
 
     public void makeDoctorOrNurseDrawBlood(Scanner input) {
         System.out.println("Choose a patient to draw blood from");
