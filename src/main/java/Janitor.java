@@ -20,7 +20,7 @@ public class Janitor extends Employee implements Worker {
     @Override
     public void work() {
         sweeping ^= true;
-        System.out.println(getName() + " has " + (isSweeping() ? "started" : "stopped") + " working!");
+        System.out.println(getName() + " has " + (isSweeping() ? "started" : "stopped") + " sweeping!");
     }
 
     @Override

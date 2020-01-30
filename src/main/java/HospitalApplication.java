@@ -37,7 +37,7 @@ public class HospitalApplication {
 
             command = input.nextLine();
 
-            switch (command.toLowerCase()) {
+            switch (command.toLowerCase().trim()) {
 
                 case "quit":
                     break;
