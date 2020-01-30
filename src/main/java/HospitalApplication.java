@@ -12,8 +12,6 @@ public class HospitalApplication {
 
         String command;
 
-        boolean employeesPaid = false;
-
         Doctor doctor = new Doctor("Eric", "Foot");
 
         Janitor janitor = new Janitor("John", false);
