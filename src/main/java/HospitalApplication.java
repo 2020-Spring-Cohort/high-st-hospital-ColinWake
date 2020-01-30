@@ -96,6 +96,10 @@ public class HospitalApplication {
                     occupants.makeEmployeeWork(input);
 
                     break;
+                case "search":
+                    occupants.printEmployeeFromSearch(input);
+
+                    break;
                 default:
                     System.out.println("Unknown command, try again");
             }

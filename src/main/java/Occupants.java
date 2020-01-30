@@ -251,4 +251,16 @@ public class Occupants {
             System.out.println(chosen);
         }
     }
+
+    public void printEmployeeFromSearch(Scanner input) {
+        System.out.println("Enter the name of the employee you're trying to find");
+
+        String name = input.nextLine();
+
+        if (getAllEmployees().get(name.toUpperCase()) != null) {
+            System.out.println(getAllEmployees().get(name.toUpperCase()));
+        } else {
+            System.out.println("Nobody named " + name + " works here");
+        }
+    }
 }

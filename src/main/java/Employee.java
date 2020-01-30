@@ -57,9 +57,9 @@ public abstract class Employee {
     @Override
     public String toString() {
         return getJobTitle() + " " + getName() +
-                "   | Salary: " + getSalary() +
-                "   | Employee Number: " + getEmployeeNumber() +
-                "   | Paid: " + (isPaid() ? "yes" : "no");
+                " | Salary: " + getSalary() +
+                " | Employee Number: " + getEmployeeNumber() +
+                " | Paid: " + (isPaid() ? "yes" : "no");
     }
 
     public abstract String getSalary();
