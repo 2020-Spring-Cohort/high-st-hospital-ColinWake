@@ -11,6 +11,8 @@ public class HospitalApplication {
 
         String command;
 
+        boolean employeesPaid = false;
+
         do {
             System.out.println("Enter a command");
 
@@ -20,19 +22,28 @@ public class HospitalApplication {
 
                 case "quit":
                     break;
+//                case "work":
+//                    occupants.makeChosenEmployeeWork(input);
+//
+//                    break;
 
-                case "work":
-                    occupants.makeChosenEmployeeWork(input);
+                case "list":
+                    occupants.printAllEmployees();
 
                     break;
-
                 case "care":
                     occupants.makeDoctorOrNurseCare(input);
 
                     break;
-
                 case "pay":
+                    if (employeesPaid) {
+                        System.out.println("You already paid all employees!");
+
+                        break;
+                    }
                     occupants.payAllEmployees();
+
+                    employeesPaid = true;
 
                     break;
                 default:

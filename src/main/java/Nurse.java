@@ -32,11 +32,6 @@ public class Nurse extends Employee implements HealthCareProfessional {
     }
 
     @Override
-    public void paySalary() {
-
-    }
-
-    @Override
     public void drawBlood(Patient patient) {
         patient.setBloodLevel(patient.getBloodLevel() - getBloodDrawAmount());
     }

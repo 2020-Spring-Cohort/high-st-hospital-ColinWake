@@ -22,11 +22,6 @@ public class Receptionist extends Employee implements Worker {
     }
 
     @Override
-    public void paySalary() {
-
-    }
-
-    @Override
     public void work() {
         onPhone ^= true;
         System.out.println(getName() + " has " + (isOnPhone() ? "started" : "stopped") + " working!");

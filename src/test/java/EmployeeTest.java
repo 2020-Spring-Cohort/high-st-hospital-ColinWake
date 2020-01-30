@@ -1,8 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -94,6 +93,8 @@ public class EmployeeTest {
                     assertTrue(doctor.isPaid());
                 },
                 () -> assertTrue(doctor.getSalary().equalsIgnoreCase("$90,000.00")));
+
+        assertThatThrownBy(() -> doctor.pay()).isInstanceOf(RuntimeException.class).hasMessageMatching(doctor.getName() + " was already paid!");
     }
 
     @Test
@@ -106,6 +107,8 @@ public class EmployeeTest {
                     assertTrue(nurse.isPaid());
                 },
                 () -> assertTrue(nurse.getSalary().equalsIgnoreCase("$50,000.00")));
+
+        assertThatThrownBy(() -> nurse.pay()).isInstanceOf(RuntimeException.class).hasMessageMatching(nurse.getName() + " was already paid!");
     }
 
     @Test
@@ -118,6 +121,8 @@ public class EmployeeTest {
                     assertTrue(receptionist.isPaid());
                 },
                 () -> assertTrue(receptionist.getSalary().equalsIgnoreCase("$45,000.00")));
+
+        assertThatThrownBy(() -> receptionist.pay()).isInstanceOf(RuntimeException.class).hasMessageMatching(receptionist.getName() + " was already paid!");
     }
 
     @Test
@@ -130,6 +135,8 @@ public class EmployeeTest {
                     assertTrue(janitor.isPaid());
                 },
                 () -> assertTrue(janitor.getSalary().equalsIgnoreCase("$40,000.00")));
+
+        assertThatThrownBy(() -> janitor.pay()).isInstanceOf(RuntimeException.class).hasMessageMatching(janitor.getName() + " was already paid!");
     }
 
     @Test
@@ -140,7 +147,7 @@ public class EmployeeTest {
         Receptionist receptionist = new Receptionist("Jeff", false);
         Janitor janitor = new Janitor("Doug", false);
 
-        occupants.addToRoster(doctor, nurse, receptionist, janitor);
+        occupants.addToOccupants(doctor, nurse, receptionist, janitor);
 
         assertThatCode(occupants::printAllEmployees).doesNotThrowAnyException();
     }

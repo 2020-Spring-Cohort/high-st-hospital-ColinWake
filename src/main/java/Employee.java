@@ -44,7 +44,8 @@ public abstract class Employee {
         return name;
     }
 
-    public void getPaid() {
+    public void pay() {
+        paySalary();
         System.out.println(getName() + " was paid their salary of " + getSalary());
         paid = true;
     }
@@ -59,12 +60,17 @@ public abstract class Employee {
                 ", Job: " + getJobTitle() +
                 ", Salary: " + getSalary() +
                 ", Employee Number: " + getEmployeeNumber() +
-                ", Paid? " + (isPaid() ? "yes" : "no");
+                ", Paid: " + (isPaid() ? "yes" : "no");
     }
 
     public abstract String getSalary();
 
-    public void paySalary() {
+    public void paySalary() throws RuntimeException {
+
+        if (isPaid()) {
+            throw new RuntimeException(getName() + " was already paid!");
+        }
+
         paid = true;
     }
 }
