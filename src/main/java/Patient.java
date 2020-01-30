@@ -4,6 +4,16 @@ public class Patient {
 
     private int healthLevel = 10;
 
+    private final String name;
+
+    public Patient(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public int getBloodLevel() {
         return bloodLevel;
     }
@@ -18,5 +28,10 @@ public class Patient {
 
     public void setHealthLevel(int healthLevel) {
         this.healthLevel = healthLevel;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + " | " + "Blood level: " + getBloodLevel() + " | " + "Health level: " + getHealthLevel();
     }
 }

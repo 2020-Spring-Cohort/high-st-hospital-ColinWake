@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class HospitalApplication {
+
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -12,6 +13,20 @@ public class HospitalApplication {
         String command;
 
         boolean employeesPaid = false;
+
+        Doctor doctor = new Doctor("Eric", "Foot");
+
+        Janitor janitor = new Janitor("John", false);
+
+        Nurse nurse = new Nurse("Kylie");
+
+        Receptionist receptionist = new Receptionist("Aaron", false);
+
+        occupants.addToOccupants(doctor, janitor, nurse, receptionist);
+
+        Patient patient = new Patient("Bobby");
+
+        occupants.addToOccupants(patient);
 
         do {
             System.out.println("Enter a command");
@@ -30,9 +45,16 @@ public class HospitalApplication {
                 case "list":
                     occupants.printAllEmployees();
 
+                    occupants.printAllPatients();
+
                     break;
                 case "care":
                     occupants.makeDoctorOrNurseCare(input);
+
+                    break;
+
+                case "draw":
+                    occupants.makeDoctorOrNurseDrawBlood(input);
 
                     break;
                 case "pay":

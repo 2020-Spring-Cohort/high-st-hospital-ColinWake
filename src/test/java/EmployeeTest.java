@@ -11,7 +11,7 @@ public class EmployeeTest {
 
     @BeforeEach
     public void setUp() {
-        patient = new Patient();
+        patient = new Patient("Jeff");
     }
 
     @Test
@@ -21,7 +21,7 @@ public class EmployeeTest {
 
     @Test
     public void patientShouldInstantiate() {
-        Patient patient = new Patient();
+        Patient patient = new Patient("Test");
     }
 
     @Test
@@ -158,5 +158,14 @@ public class EmployeeTest {
         Receptionist receptionist = new Receptionist("Test", false);
 
         assertAll(() -> assertTrue(janitor instanceof Worker));
+    }
+
+    @Test
+    public void patientShouldHaveOverriddenToString() {
+        assertThatCode(() -> {
+            Patient patient = new Patient("Henry");
+
+            System.out.println(patient);
+        }).doesNotThrowAnyException();
     }
 }

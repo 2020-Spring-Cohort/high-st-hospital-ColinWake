@@ -1,19 +1,22 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
 public class Occupants {
 
-    private final List<Employee> allEmployees = new ArrayList<>();
+    private final Map<String, Employee> allEmployees = new HashMap<>();
 
-//    private final List<Patient>
+    private final Map<String, Patient> patients = new HashMap<>();
 
 //    private final Multimap<HealthCareProfessional, Patient> patientsUnderCare = MultimapBuilder.hashKeys().arrayListValues().build();
 
-    public List<Employee> getAllEmployees() {
+    public Map<String, Employee> getAllEmployees() {
         return allEmployees;
+    }
+
+    public Map<String, Patient> getPatients() {
+        return patients;
     }
 
     private final Predicate<Employee> onlyAbleToHelp = e -> e instanceof HealthCareProfessional;
@@ -37,23 +40,35 @@ public class Occupants {
 //    }
 
     public void addToOccupants(Employee employee) {
-        getAllEmployees().add(employee);
+        getAllEmployees().put(employee.getName(), employee);
+    }
+
+    public void addToOccupants(Patient patient) {
+        getPatients().put(patient.getName().toUpperCase(), patient);
     }
 
     public void addToOccupants(Employee... employees) {
-        allEmployees.addAll(Arrays.asList(employees));
+        for (Employee employee : employees) {
+            getAllEmployees().put(employee.getName().toUpperCase(), employee);
+        }
     }
 
     public void fireEmployee(Employee employee) {
-        getAllEmployees().remove(employee);
+        getAllEmployees().remove(employee.getName().toUpperCase());
     }
 
     public void payAllEmployees() {
-        allEmployees.forEach(Employee::pay);
+        getAllEmployees().values().forEach(Employee::pay);
     }
 
     public void printAllEmployees() {
-        allEmployees.forEach(System.out::println);
+        System.out.println("Staff:");
+        getAllEmployees().values().forEach(System.out::println);
+    }
+
+    public void printAllPatients() {
+        System.out.println("Patients:");
+        getPatients().values().forEach(System.out::println);
     }
 
 //    public void makeChosenEmployeeWork(Scanner input) {
@@ -75,18 +90,55 @@ public class Occupants {
 //        }
 //    }
 
+    public void makeDoctorOrNurseDrawBlood(Scanner input) {
+        System.out.println("Choose a patient to draw blood from");
+
+        getPatients().values().forEach(System.out::println);
+
+        String chosenPatient = input.nextLine();
+
+        if (getPatients().get(chosenPatient.toUpperCase()) != null) {
+            Patient chosen = getPatients().get(chosenPatient.toUpperCase());
+
+            getAllEmployees().values().stream().filter(getOnlyAbleToHelp()).forEach(System.out::println);
+
+            System.out.println("Choose medical personnel to draw blood from " + chosen.getName());
+
+            String chosenPersonnel = input.nextLine();
+
+            HealthCareProfessional toCare = (HealthCareProfessional) getAllEmployees().get(chosenPersonnel.toUpperCase());
+
+            toCare.drawBlood(chosen);
+
+            System.out.println(((Employee) toCare).getName() + " has drawn blood from " + chosen.getName());
+
+            System.out.println(chosen);
+        }
+    }
+
     public void makeDoctorOrNurseCare(Scanner input) {
-        getAllEmployees().stream().filter(getOnlyAbleToHelp()).forEach(e -> System.out.println(e.getName()));
+        System.out.println("Choose a patient to treat");
 
-        System.out.println("Enter an employee's name to have them treat a patient!");
+        getPatients().values().forEach(System.out::println);
 
-        String chosenEmployee = input.nextLine();
+        String chosenPatient = input.nextLine();
 
-        if (getAllEmployees().stream().anyMatch(e -> e.getName().equalsIgnoreCase(chosenEmployee))) {
+        if (getPatients().get(chosenPatient.toUpperCase()) != null) {
+            Patient chosen = getPatients().get(chosenPatient.toUpperCase());
 
+            getAllEmployees().values().stream().filter(getOnlyAbleToHelp()).forEach(System.out::println);
 
-        } else {
-            System.out.println("No employee named " + chosenEmployee + " works here!");
+            System.out.println("Choose medical personnel to treat " + chosen.getName());
+
+            String chosenPersonnel = input.nextLine();
+
+            HealthCareProfessional toCare = (HealthCareProfessional) getAllEmployees().get(chosenPersonnel.toUpperCase());
+
+            toCare.careForPatient(chosen);
+
+            System.out.println(((Employee) toCare).getName() + " has treated " + chosen.getName());
+
+            System.out.println(chosen);
         }
     }
 }
