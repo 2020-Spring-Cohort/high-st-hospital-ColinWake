@@ -28,6 +28,11 @@ public class Receptionist extends Employee implements Worker {
     }
 
     @Override
+    public String toString() {
+        return super.toString() + " | On the phone: " + (isWorking() ? "yes" : "no");
+    }
+
+    @Override
     public boolean isWorking() {
         return isOnPhone();
     }

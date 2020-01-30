@@ -24,6 +24,11 @@ public class Janitor extends Employee implements Worker {
     }
 
     @Override
+    public String toString() {
+        return super.toString() + " | Sweeping: " + (isWorking() ? "yes" : "no");
+    }
+
+    @Override
     public boolean isWorking() {
         return isSweeping();
     }

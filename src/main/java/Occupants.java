@@ -40,11 +40,17 @@ public class Occupants {
 //    }
 
     public void addToOccupants(Employee employee) {
-        getAllEmployees().put(employee.getName(), employee);
+        getAllEmployees().put(employee.getName().toUpperCase(), employee);
     }
 
     public void addToOccupants(Patient patient) {
         getPatients().put(patient.getName().toUpperCase(), patient);
+    }
+
+    public void addToOccupants(Patient... patients) {
+        for (Patient patient : patients) {
+            getPatients().put(patient.getName().toUpperCase(), patient);
+        }
     }
 
     public void addToOccupants(Employee... employees) {
@@ -57,8 +63,112 @@ public class Occupants {
         getAllEmployees().remove(employee.getName().toUpperCase());
     }
 
+    public void fireEmployee(String name) {
+        if (getAllEmployees().get(name.toUpperCase()) != null) {
+            getAllEmployees().remove(getAllEmployees().get(name.toUpperCase()).getName().toUpperCase());
+
+            System.out.println(name + " was fired");
+        } else {
+            System.out.println(name + " doesn't work here");
+        }
+    }
+
+    public void hireNewEmployee(Scanner input) {
+        System.out.println("Which job are you hiring for? (Doctor, Janitor, Nurse, Receptionist)");
+
+        String chosenJob = input.nextLine();
+
+        switch (chosenJob.toLowerCase()) {
+
+            case "doctor":
+                System.out.println("What is the doctor's name?");
+
+                String name = input.nextLine();
+
+                System.out.println("What is this doctor's specialty?");
+
+                String specialty = input.nextLine();
+
+                addToOccupants(new Doctor(name, specialty));
+
+                announceNewHire(name, chosenJob, specialty);
+
+                break;
+            case "janitor":
+                System.out.println("What is the janitor's name?");
+
+                name = input.nextLine();
+
+                addToOccupants(new Janitor(name, false));
+
+                announceNewHire(name, chosenJob);
+
+                break;
+            case "nurse":
+                System.out.println("What is the nurse's name?");
+
+                name = input.nextLine();
+
+                addToOccupants(new Nurse(name));
+
+                announceNewHire(name, chosenJob);
+
+                break;
+            case "receptionist":
+                System.out.println("What is the receptionist's");
+
+                name = input.nextLine();
+
+                addToOccupants(new Receptionist(name, false));
+
+                announceNewHire(name, chosenJob);
+
+                break;
+            default:
+                System.out.println("That job doesn't exist at this hospital");
+        }
+    }
+
+    public void announceNewHire(String name, String job) {
+        System.out.println(name + " has joined the staff team as a " + job);
+    }
+
+    public void announceNewHire(String name, String job, String specialty) {
+        System.out.println(name + " has joined the staff team as a " + specialty + " " + job);
+    }
+
     public void payAllEmployees() {
-        getAllEmployees().values().forEach(Employee::pay);
+        getAllEmployees().values().forEach(e -> {
+            if (!e.isPaid()) e.pay();
+        });
+    }
+
+    public void printAllWorkers() {
+        getAllEmployees().values().stream().filter(e -> e instanceof Worker).forEach(System.out::println);
+    }
+
+    public void makeEmployeeWork(Worker worker) {
+        worker.work();
+    }
+
+    public void makeEmployeeWork(Scanner input) {
+        printAllWorkers();
+
+        System.out.println("Who do you want to start/stop working?");
+
+        String name = input.nextLine();
+
+        if (getAllEmployees().get(name.toUpperCase()) != null) {
+            Employee employee = getAllEmployees().get(name.toUpperCase());
+
+            if (employee instanceof Worker) {
+                makeEmployeeWork((Worker) employee);
+            } else {
+                System.out.println(name + " isn't a worker");
+            }
+        } else {
+            System.out.println(name + " doesn't work here");
+        }
     }
 
     public void printAllEmployees() {

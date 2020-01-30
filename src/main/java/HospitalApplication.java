@@ -28,6 +28,10 @@ public class HospitalApplication {
 
         occupants.addToOccupants(patient);
 
+        EmergencyDispatcher tina = new EmergencyDispatcher("Tina");
+
+        occupants.addToOccupants(tina);
+
         do {
             System.out.println("Enter a command");
 
@@ -57,15 +61,39 @@ public class HospitalApplication {
                     occupants.makeDoctorOrNurseDrawBlood(input);
 
                     break;
-                case "pay":
-                    if (employeesPaid) {
-                        System.out.println("You already paid all employees!");
 
-                        break;
-                    }
+                case "intake":
+                    System.out.println("Name the new patient");
+
+                    String name = input.nextLine();
+
+                    occupants.addToOccupants(new Patient(name));
+
+                    System.out.println(name + " added as a patient");
+
+                    break;
+
+                case "fire":
+                    occupants.printAllEmployees();
+
+                    System.out.println("Who do you want to fire?");
+
+                    String chosen = input.nextLine();
+
+                    occupants.fireEmployee(chosen);
+
+                    break;
+
+                case "hire":
+                    occupants.hireNewEmployee(input);
+
+                    break;
+                case "pay":
                     occupants.payAllEmployees();
 
-                    employeesPaid = true;
+                    break;
+                case "work":
+                    occupants.makeEmployeeWork(input);
 
                     break;
                 default:
