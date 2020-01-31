@@ -20,15 +20,13 @@ public class HospitalApplication {
 
         Receptionist receptionist = new Receptionist("Aaron", false);
 
-        occupants.addToOccupants(doctor, janitor, nurse, receptionist);
+        EmergencyDispatcher tina = new EmergencyDispatcher("Tina");
+
+        occupants.addToOccupants(doctor, janitor, nurse, receptionist, tina);
 
         Patient patient = new Patient("Bobby");
 
         occupants.addToOccupants(patient);
-
-        EmergencyDispatcher tina = new EmergencyDispatcher("Tina");
-
-        occupants.addToOccupants(tina);
 
         do {
             System.out.println("Enter a command");
@@ -100,6 +98,6 @@ public class HospitalApplication {
         } while (!command.equalsIgnoreCase("quit"));
 
 
-        System.out.println("Thanks for playing!");
+        System.out.println("Goodbye!");
     }
 }
