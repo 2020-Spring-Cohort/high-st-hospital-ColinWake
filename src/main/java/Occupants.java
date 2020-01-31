@@ -165,7 +165,7 @@ public class Occupants {
             if (employee instanceof Worker) {
                 makeEmployeeWork((Worker) employee);
             } else {
-                System.out.println(name + " isn't a worker");
+                System.out.println(employee.getName() + " isn't a worker, they are a " + employee.getJobTitle());
             }
         } else {
             System.out.println(name + " doesn't work here");

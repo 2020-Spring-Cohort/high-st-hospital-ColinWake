@@ -24,7 +24,7 @@ public class Receptionist extends Employee implements Worker {
     @Override
     public void work() {
         onPhone ^= true;
-        System.out.println(getName() + " is " + (isOnPhone() ? "" : "not") + "on the phone!");
+        System.out.println(getName() + " is " + (isOnPhone() ? "" : "not ") + "on the phone!");
     }
 
     @Override
