@@ -21,10 +21,6 @@ public abstract class Employee {
         return paid;
     }
 
-    public void setPaid(boolean paid) {
-        this.paid = paid;
-    }
-
     public Employee(int salary, String name) {
         this.salary = salary;
         this.employeeNumber = ++employeeCount;
