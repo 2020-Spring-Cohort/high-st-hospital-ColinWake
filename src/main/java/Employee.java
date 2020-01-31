@@ -27,8 +27,7 @@ public abstract class Employee {
 
     public Employee(int salary, String name) {
         this.salary = salary;
-        employeeCount++;
-        this.employeeNumber = employeeCount;
+        this.employeeNumber = ++employeeCount;
         this.name = name;
     }
 
