@@ -44,7 +44,13 @@ public class Occupants {
     }
 
     public void fireEmployee(Employee employee) {
-        getAllEmployees().remove(employee.getName().toUpperCase());
+        if (getAllEmployees().containsValue(employee)) {
+            getAllEmployees().remove(employee.getName().toUpperCase());
+
+            System.out.println(employee.getName() + " was fired");
+        } else {
+            System.out.println(employee.getName() + " isn't in the building(?)");
+        }
     }
 
     public void fireEmployee(String name) {
