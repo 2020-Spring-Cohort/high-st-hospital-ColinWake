@@ -8,7 +8,7 @@ public class HospitalApplication {
 
         Occupants occupants = new Occupants();
 
-        System.out.println("Welcome to High St. Hospital!");
+        System.out.println("Welcome to High St. Hospital! Type 'help' for a list of commands");
 
         String command;
 
@@ -93,6 +93,10 @@ public class HospitalApplication {
                     break;
                 case "search":
                     occupants.printEmployeeFromSearch(input);
+
+                    break;
+                case "help":
+                    System.out.println("Commands: quit, list, care, draw, intake, fire, hire, pay, work, search");
 
                     break;
                 default:
