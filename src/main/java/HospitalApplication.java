@@ -24,9 +24,13 @@ public class HospitalApplication {
 
         occupants.addToOccupants(doctor, janitor, nurse, receptionist, tina);
 
-        Patient patient = new Patient("Bobby");
+        Patient bobby = new Patient("Bobby");
 
-        occupants.addToOccupants(patient);
+        Patient jim = new Patient("Jim");
+
+        Patient henry = new Patient("Henry");
+
+        occupants.addToOccupants(bobby, jim, henry);
 
         do {
             System.out.println("Enter a command");
