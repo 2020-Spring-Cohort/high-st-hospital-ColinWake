@@ -1,4 +1,4 @@
-public interface HealthCareProfessional {
+public interface MedicalProfessional {
 
     void drawBlood(Patient patient);
 

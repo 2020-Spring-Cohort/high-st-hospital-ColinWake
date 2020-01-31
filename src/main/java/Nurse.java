@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Nurse extends Employee implements HealthCareProfessional {
+public class Nurse extends Employee implements MedicalProfessional {
 
     private static final int BLOOD_DRAW_AMOUNT = 3;
 

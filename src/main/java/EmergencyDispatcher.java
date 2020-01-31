@@ -1,4 +1,4 @@
-public class EmergencyDispatcher extends Employee implements Worker, HealthCareProfessional {
+public class EmergencyDispatcher extends Employee implements Worker, MedicalProfessional {
 
     private boolean onCall;
 

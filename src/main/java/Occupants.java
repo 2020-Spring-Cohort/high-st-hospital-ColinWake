@@ -17,7 +17,7 @@ public class Occupants {
         return patients;
     }
 
-    private final Predicate<Employee> onlyAbleToHelp = e -> e instanceof HealthCareProfessional;
+    private final Predicate<Employee> onlyAbleToHelp = e -> e instanceof MedicalProfessional;
 
     public Predicate<Employee> getOnlyAbleToHelp() {
         return onlyAbleToHelp;
@@ -198,7 +198,7 @@ public class Occupants {
 
             String chosenPersonnel = input.nextLine();
 
-            HealthCareProfessional toCare = (HealthCareProfessional) getAllEmployees().get(chosenPersonnel.toUpperCase());
+            MedicalProfessional toCare = (MedicalProfessional) getAllEmployees().get(chosenPersonnel.toUpperCase());
 
             toCare.drawBlood(chosen);
 
@@ -224,7 +224,7 @@ public class Occupants {
 
             String chosenPersonnel = input.nextLine();
 
-            HealthCareProfessional toCare = (HealthCareProfessional) getAllEmployees().get(chosenPersonnel.toUpperCase());
+            MedicalProfessional toCare = (MedicalProfessional) getAllEmployees().get(chosenPersonnel.toUpperCase());
 
             toCare.careForPatient(chosen);
 

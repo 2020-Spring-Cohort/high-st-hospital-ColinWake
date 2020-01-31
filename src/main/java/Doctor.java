@@ -1,4 +1,4 @@
-public class Doctor extends Employee implements HealthCareProfessional {
+public class Doctor extends Employee implements MedicalProfessional {
 
     private static final int BLOOD_DRAW_AMOUNT = 2;
 
